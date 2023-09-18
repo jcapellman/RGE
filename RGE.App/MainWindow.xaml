@@ -4,9 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RGE.App"
+        xmlns:viewModels="clr-namespace:RGE.App.ViewModels"
         mc:Ignorable="d"
-        Title="RGE" Height="450" Width="800">
+        Title="RGE" Height="600" MinWidth="320" MinHeight="200" Width="800">
+    <Window.DataContext>
+        <viewModels:MainWindowVM />
+    </Window.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0" Background="Red">
+            <TextBlock Foreground="White" FontWeight="Bold" TextAlignment="Center" Text="{Binding GameHeaderStr}" />
+        </Grid>
+
+        <Grid Grid.Row="1" Background="Black">
+            
+        </Grid>
     </Grid>
 </Window>
