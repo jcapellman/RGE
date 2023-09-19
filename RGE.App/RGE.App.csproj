@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NLog" Version="5.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\JackSazerak.lib\JackSazerak.lib.csproj" />
     <ProjectReference Include="..\RGE.Lib\RGE.Lib.csproj" />
   </ItemGroup>

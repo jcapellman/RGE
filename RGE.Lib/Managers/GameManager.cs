@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 
+using NLog;
+
 using RGE.Lib.Abstractions;
 
 namespace RGE.Lib.Managers
@@ -22,15 +24,26 @@ namespace RGE.Lib.Managers
 
                     if (gameType is null)
                     {
+                        LogManager.GetCurrentClassLogger()
+                            .Debug($"{file} had no BaseGame implementations");
+
                         continue;
                     }
 
-                    if (Activator.CreateInstance(gameType) is BaseGame game)
+                    if (Activator.CreateInstance(gameType) is not BaseGame game)
                     {
-                        games.Add(game);
+                        continue;
                     }
+
+                    LogManager.GetCurrentClassLogger()
+                        .Debug($"{file} was loaded and included {game.GameHeaderStr}");
+
+                    games.Add(game);
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    LogManager.GetCurrentClassLogger().Warn($"{file} threw the following exception when attempting to load: {ex}");
+                }
             }
 
             return games;
