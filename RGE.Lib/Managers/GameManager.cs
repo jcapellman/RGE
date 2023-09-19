@@ -20,25 +20,20 @@ namespace RGE.Lib.Managers
                 {
                     var assembly = Assembly.LoadFile(file);
 
-                    var gameType = assembly.GetTypes().FirstOrDefault(a => a.BaseType == typeof(BaseGame));
+                    var gameTypes = assembly.GetTypes().Where(a => a.BaseType == typeof(BaseGame));
 
-                    if (gameType is null)
+                    foreach (var gameType in gameTypes)
                     {
+                        if (Activator.CreateInstance(gameType) is not BaseGame game)
+                        {
+                            continue;
+                        }
+
                         LogManager.GetCurrentClassLogger()
-                            .Debug($"{file} had no BaseGame implementations");
+                            .Debug($"{file} was loaded and included {game.GameHeaderStr}");
 
-                        continue;
+                        games.Add(game);
                     }
-
-                    if (Activator.CreateInstance(gameType) is not BaseGame game)
-                    {
-                        continue;
-                    }
-
-                    LogManager.GetCurrentClassLogger()
-                        .Debug($"{file} was loaded and included {game.GameHeaderStr}");
-
-                    games.Add(game);
                 }
                 catch (Exception ex)
                 {

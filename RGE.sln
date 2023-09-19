@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGE.App", "RGE.App\RGE.App.csproj", "{3C5A2E2C-95E7-40AF-923F-CE4373AF2845}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGE.Engine", "RGE.App\RGE.Engine.csproj", "{3C5A2E2C-95E7-40AF-923F-CE4373AF2845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RGE.Lib", "RGE.Lib\RGE.Lib.csproj", "{665665FF-C9E5-4FC7-9268-F8E3198FD6B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGE.Lib", "RGE.Lib\RGE.Lib.csproj", "{665665FF-C9E5-4FC7-9268-F8E3198FD6B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JackSazerak.lib", "JackSazerak.lib\JackSazerak.lib.csproj", "{6DB6E808-B59C-4344-933D-D65493691703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JackSazerak.lib", "JackSazerak.lib\JackSazerak.lib.csproj", "{6DB6E808-B59C-4344-933D-D65493691703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

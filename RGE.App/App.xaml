@@ -1,8 +1,7 @@
-﻿<Application x:Class="RGE.App.App"
+﻿<Application x:Class="RGE.Engine.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:RGE.App"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:RGE.Engine" Startup="Application_Startup"> 
     <Application.Resources>
          
     </Application.Resources>

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace RGE.App.ViewModels.Base
+namespace RGE.Engine.ViewModels.Base
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
