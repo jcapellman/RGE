@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Background="Red">
-            <TextBlock Foreground="White" FontWeight="Bold" TextAlignment="Center" Text="{Binding GameHeaderStr}" />
+            <TextBlock Foreground="White" FontWeight="Bold" TextAlignment="Center" Text="{Binding Game.GameHeaderStr}" />
         </Grid>
 
         <Grid Grid.Row="1" Background="Black">
