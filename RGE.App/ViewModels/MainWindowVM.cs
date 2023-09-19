@@ -1,53 +1,30 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 using RGE.App.ViewModels.Base;
 using RGE.Lib.Abstractions;
+using RGE.Lib.Managers;
 
 namespace RGE.App.ViewModels
 {
     public class MainWindowVM : BaseViewModel
     {
-        public BaseGame Game
+        public BaseGame? Game
         {
             get => _game;
 
             set { _game = value; OnPropertyChanged(); }
         }
 
-        private BaseGame _game;
-
-        private BaseGame? LoadGame()
-        {
-            var potentialGames = Directory.GetFiles(AppContext.BaseDirectory, "*.dll");
-
-            foreach (var file in potentialGames)
-            {
-                try
-                {
-                    var assembly = Assembly.LoadFile(file);
-
-                    var game = assembly.GetTypes().FirstOrDefault(a => a.BaseType == typeof(BaseGame));
-
-                    if (game != null)
-                    {
-                        return (BaseGame)Activator.CreateInstance(game)!;
-                    }
-                } catch (Exception) { }
-            }
-
-            return null;
-        }
+        private BaseGame? _game;
 
         public MainWindowVM()
         {
-            var game = LoadGame();
+            var games = GameManager.LoadGames(AppContext.BaseDirectory);
 
-            if (game is not null)
+            if (games.Count != 0)
             {
-                Game = game;
+                Game = games.First();
             }
         }
     }
