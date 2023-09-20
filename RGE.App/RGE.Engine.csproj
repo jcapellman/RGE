@@ -16,4 +16,10 @@
     <ProjectReference Include="..\RGE.Lib\RGE.Lib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
