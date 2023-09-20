@@ -12,9 +12,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="GameSelectionWindow.xaml">
+    <EmbeddedResource Update="GameSelectionWindow.xaml">
       <SubType>Designer</SubType>
-    </Page>
+    </EmbeddedResource>
     <Page Update="GameWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

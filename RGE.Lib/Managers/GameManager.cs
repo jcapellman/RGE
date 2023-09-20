@@ -41,7 +41,7 @@ namespace RGE.Lib.Managers
                 }
             }
 
-            return games;
+            return games.OrderBy(a => a.GameHeaderStr).ToList();
         }
     }
 }
