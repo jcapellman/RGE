@@ -10,13 +10,11 @@ namespace RGE.Engine
     /// </summary>
     public partial class GameWindow : Window
     {
-
-        public GameWindow()
+        public GameWindow(BaseGame game)
         {
-
             InitializeComponent();
-          //  DataContext = new MainWindowVM(game);
 
+            DataContext = new GameWindowVM(game);
         }
     }
 }

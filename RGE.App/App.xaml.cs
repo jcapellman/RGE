@@ -11,13 +11,10 @@ namespace RGE.Engine
     /// </summary>
     public partial class App : Application
     {
-        public App()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            InitializeComponent();
-        }
+            base.OnStartup(e);
 
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
             var games = GameManager.LoadGames(AppContext.BaseDirectory);
 
             if (!games.Any())
@@ -29,15 +26,15 @@ namespace RGE.Engine
 
             if (games.Count() == 1)
             {
-                Application.Current.MainWindow = new GameWindow();
+                var gameWindow = new GameWindow(games.First());
 
-                Application.Current.MainWindow.Show();
+                gameWindow.Show();
 
                 return;
             }
 
-            Application.Current.MainWindow = new GameSelectionWindow(games);
-            Application.Current.MainWindow.Show();
+            var gameSelectionWindow = new GameSelectionWindow(games);
+            gameSelectionWindow.Show();
         }
     }
 }

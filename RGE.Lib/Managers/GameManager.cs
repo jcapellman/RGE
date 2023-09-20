@@ -18,7 +18,7 @@ namespace RGE.Lib.Managers
             {
                 try
                 {
-                    var assembly = Assembly.LoadFile(file);
+                    var assembly = Assembly.LoadFrom(file);
 
                     var gameTypes = assembly.GetTypes().Where(a => a.BaseType == typeof(BaseGame));
 
