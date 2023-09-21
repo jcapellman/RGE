@@ -17,7 +17,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Background="Black">
-            
+            <TextBox VerticalScrollBarVisibility="Hidden" Background="Black" Foreground="Gray" HorizontalScrollBarVisibility="Hidden" Text="{Binding Log, Mode=TwoWay}" />
         </Grid>
     </Grid>
 </Window>

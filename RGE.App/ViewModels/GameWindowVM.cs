@@ -1,6 +1,8 @@
 ﻿using RGE.Engine.ViewModels.Base;
 using RGE.Lib.Abstractions;
 
+using System.Text;
+
 namespace RGE.Engine.ViewModels
 {
     public class GameWindowVM : BaseViewModel
@@ -14,8 +16,27 @@ namespace RGE.Engine.ViewModels
 
         private BaseGame? _game;
 
+        private StringBuilder _sbLog;
+
+        public string Log
+        {
+            get => _sbLog.ToString();
+
+            set
+            {
+                _sbLog ??= new StringBuilder();
+
+                _sbLog.Append(value);
+
+                OnPropertyChanged();
+            }
+        }
+
+
         public GameWindowVM(BaseGame? game)
         {
+            Log = string.Empty;
+
             Game = game;
         }
     }
