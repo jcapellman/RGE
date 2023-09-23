@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+using JackSazerak.lib;
 using RGE.Engine.ViewModels.Base;
 using RGE.Lib.Abstractions;
 
@@ -20,7 +20,7 @@ namespace RGE.Engine.ViewModels
             }
         }
 
-        private List<BaseGame> _games;
+        private List<BaseGame> _games = new();
 
         public BaseGame SelectedGame
         {
@@ -34,7 +34,7 @@ namespace RGE.Engine.ViewModels
             }
         }
 
-        private BaseGame _selectedGame;
+        private BaseGame _selectedGame = new Game();
 
         public GameSelectionWindowVM(List<BaseGame> games)
         {

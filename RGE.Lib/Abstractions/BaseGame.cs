@@ -1,11 +1,14 @@
-﻿namespace RGE.Lib.Abstractions
+﻿using RGE.Lib.Abstractions.Base;
+using RGE.Lib.Enums;
+
+namespace RGE.Lib.Abstractions
 {
-    public abstract class BaseGame
+    public abstract class BaseGame : BaseRGEObject
     {
-        public abstract string GameHeaderStr { get; }
+        public override ObjectTypes ObjectType => ObjectTypes.Game;
 
         public abstract string GameVersionStr { get; }
 
-        public string TitleBarStr => $"{GameHeaderStr} (Version {GameVersionStr})";
+        public string TitleBarStr => $"{Name} (Version {GameVersionStr})";
     }
 }

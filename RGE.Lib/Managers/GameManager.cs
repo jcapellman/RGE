@@ -5,6 +5,6 @@ namespace RGE.Lib.Managers
 {
     public class GameManager : BaseManager
     {
-        public static List<BaseGame> LoadGames(string basePath) => LoadFromDisk<BaseGame>(basePath).OrderBy(a => a.GameHeaderStr).ToList();
+        public static List<BaseGame> LoadGames(string basePath) => LoadFromDisk<BaseGame>(basePath);
     }
 }

@@ -1,12 +1,13 @@
 ﻿using NLog;
 
 using System.Reflection;
+using RGE.Lib.Abstractions.Base;
 
 namespace RGE.Lib.Managers.Base
 {
     public class BaseManager
     {
-        protected static List<T> LoadFromDisk<T>(string basePath, string extension = "dll")
+        protected static List<T> LoadFromDisk<T>(string basePath, string extension = "dll") where T : BaseRGEObject
         {
             var loadedObjects = new List<T>();
 
@@ -39,7 +40,7 @@ namespace RGE.Lib.Managers.Base
                 }
             }
 
-            return loadedObjects;
+            return loadedObjects.OrderBy(a => a.Name).ToList();
         }
     }
 }

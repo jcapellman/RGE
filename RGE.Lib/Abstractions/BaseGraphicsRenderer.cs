@@ -1,7 +1,10 @@
-﻿namespace RGE.Lib.Abstractions
+﻿using RGE.Lib.Abstractions.Base;
+using RGE.Lib.Enums;
+
+namespace RGE.Lib.Abstractions
 {
-    public abstract class BaseGraphicsRenderer
+    public abstract class BaseGraphicsRenderer : BaseRGEObject
     {
-        public abstract string Name { get; }
+        public override ObjectTypes ObjectType => ObjectTypes.GraphicsRenderer;
     }
 }

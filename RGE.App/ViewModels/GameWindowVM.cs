@@ -16,7 +16,7 @@ namespace RGE.Engine.ViewModels
 
         private BaseGame? _game;
 
-        private StringBuilder _sbLog;
+        private StringBuilder _sbLog = new();
 
         public string Log
         {
@@ -24,8 +24,6 @@ namespace RGE.Engine.ViewModels
 
             set
             {
-                _sbLog ??= new StringBuilder();
-
                 _sbLog.Append(value);
 
                 OnPropertyChanged();
