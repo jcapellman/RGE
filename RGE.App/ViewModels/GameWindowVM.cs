@@ -36,6 +36,10 @@ namespace RGE.Engine.ViewModels
             Log = string.Empty;
 
             Game = game;
+
+            Game?.Initialize();
+
+            Game?.Run();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace RGE.Lib.Managers.Base
                 }
             }
 
-            return loadedObjects.OrderBy(a => a.Name).ToList();
+            return [.. loadedObjects.OrderBy(a => a.Name)];
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RGE.Engine"
         mc:Ignorable="d"
-        Title="RGE" Height="600" MinWidth="320" MinHeight="200" Width="800">
+        Title="RGE" Height="600" MinWidth="320" WindowStartupLocation="CenterScreen" MinHeight="200" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="20" />

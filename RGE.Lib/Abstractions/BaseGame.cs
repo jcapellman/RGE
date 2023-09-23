@@ -10,5 +10,20 @@ namespace RGE.Lib.Abstractions
         public abstract string GameVersionStr { get; }
 
         public string TitleBarStr => $"{Name} (Version {GameVersionStr})";
+
+        public void Initialize()
+        {
+
+        }
+
+        public void Run()
+        {
+
+        }
+
+        public void Shutdown()
+        {
+
+        }
     }
 }
