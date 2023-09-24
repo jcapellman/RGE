@@ -4,6 +4,7 @@
     {
         SoundRenderer,
         GraphicsRenderer,
-        Game
+        Game,
+        JsonObject
     }
 }
