@@ -22,9 +22,7 @@ namespace RGE.Engine
 
         private void btnLaunch_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new GameWindow(Context.SelectedGame);
-
-            gameWindow.Show();
+            App.StartGame(Context.SelectedGame);
 
             Close();
         }

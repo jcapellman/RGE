@@ -15,8 +15,5 @@
     <EmbeddedResource Update="GameSelectionWindow.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Page Update="GameWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
 </Project>

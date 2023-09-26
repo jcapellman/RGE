@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-
+using RGE.Lib.Abstractions;
 using RGE.Lib.Managers;
 
 namespace RGE.Engine
@@ -11,6 +11,20 @@ namespace RGE.Engine
     /// </summary>
     public partial class App : Application
     {
+        public static async void StartGame(BaseGame game)
+        {
+            var initialize = await game.InitializeAsync();
+
+            if (!initialize)
+            {
+                // TODO: Log/Error Handling
+
+                return;
+            }
+
+            game.Run();
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -26,9 +40,7 @@ namespace RGE.Engine
 
             if (games.Count() == 1)
             {
-                var gameWindow = new GameWindow(games.First());
-
-                gameWindow.Show();
+                StartGame(games.First());
 
                 return;
             }
