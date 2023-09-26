@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RGE.Engine"
-        mc:Ignorable="d"
-        Title="RGE" Width="{Binding Game.Config.vid_xres}" MinWidth="320" WindowStartupLocation="CenterScreen" MinHeight="200" Height="{Binding Game.Config.vid_yres}">
+        mc:Ignorable="d" ResizeMode="NoResize"
+        Title="RGE" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="20" />

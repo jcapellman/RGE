@@ -23,6 +23,8 @@ namespace RGE.Engine
 
         private async void GameWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            Visibility = Visibility.Hidden;
+
             await VM.Game?.InitializeAsync()!;
         }
     }
