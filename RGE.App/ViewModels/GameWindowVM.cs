@@ -2,6 +2,7 @@
 using RGE.Lib.Abstractions;
 
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RGE.Engine.ViewModels
 {
@@ -36,9 +37,15 @@ namespace RGE.Engine.ViewModels
             Log = string.Empty;
 
             Game = game;
+        }
 
-            Game?.Initialize();
+        public async Task<bool> InitializeAsync()
+        {
+            return await Game?.InitializeAsync();
+        }
 
+        public void Run()
+        {
             Game?.Run();
         }
     }

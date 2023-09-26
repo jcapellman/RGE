@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 using RGE.Lib.Abstractions.Base;
 using RGE.Lib.Enums;
@@ -14,16 +13,12 @@ namespace RGE.Lib.Objects.Config
         [JsonIgnore]
         public override ObjectTypes ObjectType => ObjectTypes.JsonObject;
 
-        [DefaultValue("OpenGL")]
-        public string vid_ref { get; set; }
+        public string vid_ref { get; set; } = "OpenGL";
 
-        [DefaultValue(800)]
-        public int vid_xres { get; set; }
+        public int vid_xres { get; set; } = 800;
 
-        [DefaultValue(600)]
-        public int vid_yres { get; set; }
+        public int vid_yres { get; set; } = 600;
 
-        [DefaultValue(false)]
-        public bool vid_fullscreen { get; set; }
+        public bool vid_fullscreen { get; set; } = false;
     }
 }

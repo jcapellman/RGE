@@ -21,9 +21,11 @@ namespace RGE.Lib.Abstractions
             return Path.Combine(AppContext.BaseDirectory, fileName);
         }
 
-        public async void Initialize()
+        public async Task<bool> InitializeAsync()
         {
             Config = await ConfigManager.LoadConfigAsync(BuildPath(EngineConstants.FILENAME_CONFIG));
+
+            return true;
         }
 
         public void Run()
