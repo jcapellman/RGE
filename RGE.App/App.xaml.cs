@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using NLog;
 using RGE.Lib.Abstractions;
 using RGE.Lib.Managers;
 
@@ -17,7 +18,7 @@ namespace RGE.Engine
 
             if (!initialize)
             {
-                // TODO: Log/Error Handling
+                LogManager.GetCurrentClassLogger().Error($"{game.Name} could not initialize, shutting down");
 
                 return;
             }
