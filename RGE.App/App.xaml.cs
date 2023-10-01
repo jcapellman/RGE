@@ -32,22 +32,23 @@ namespace RGE.Engine
 
             var games = GameManager.LoadGames(AppContext.BaseDirectory);
 
-            if (!games.Any())
+            switch (games.Count)
             {
-                MessageBox.Show($"No games were found in the current launching folder ({AppContext.BaseDirectory})");
+                case 0:
+                    MessageBox.Show($"No games were found in the current launching folder ({AppContext.BaseDirectory})");
 
-                return;
+                    return;
+                case 1:
+                    StartGame(games.First());
+
+                    return;
+                default:
+                {
+                    var gameSelectionWindow = new GameSelectionWindow(games);
+                    gameSelectionWindow.Show();
+                    break;
+                }
             }
-
-            if (games.Count() == 1)
-            {
-                StartGame(games.First());
-
-                return;
-            }
-
-            var gameSelectionWindow = new GameSelectionWindow(games);
-            gameSelectionWindow.Show();
         }
     }
 }
