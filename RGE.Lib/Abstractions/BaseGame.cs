@@ -1,4 +1,6 @@
 ﻿using RGE.Lib.Abstractions.Base;
+using RGE.Lib.Abstractions.Renderers;
+using RGE.Lib.Abstractions.Renderers.Base;
 using RGE.Lib.Common;
 using RGE.Lib.Enums;
 using RGE.Lib.Managers;
@@ -18,46 +20,72 @@ namespace RGE.Lib.Abstractions
 
         protected BaseGraphicsRenderer graphicsRenderer;
 
+        protected BaseSoundRenderer soundRenderer;
+
         private static string BuildPath(string fileName)
         {
             return Path.Combine(AppContext.BaseDirectory, fileName);
         }
 
-        private bool LoadGraphicsRenderer()
+        private T? LoadRenderer<T>() where T: BaseRenderer
         {
-            var graphicsRenderers = GraphicsRendererManager.LoadRenderers(AppContext.BaseDirectory);
+            var renderers = RendererManager.LoadRenderers<T>(AppContext.BaseDirectory);
 
-            if (graphicsRenderers.Count == 0)
+            if (renderers.Count == 0)
+            {
+                return null;
+            }
+
+            var renderer = renderers.FirstOrDefault(a => a.Name == Config.vid_ref);
+
+            return renderer ?? renderers.First();
+        }
+
+        private bool InitGraphicsRenderer()
+        {
+            var gfxRenderer = LoadRenderer<BaseGraphicsRenderer>();
+
+            if (gfxRenderer is null)
             {
                 return false;
             }
 
-            var gfxRenderer = graphicsRenderers.FirstOrDefault(a => a.Name == Config.vid_ref);
+            graphicsRenderer = gfxRenderer;
 
-            if (gfxRenderer is not null)
+            return graphicsRenderer.Init(Config);
+        }
+
+        private bool InitSoundRenderer()
+        {
+            var sndRenderer = LoadRenderer<BaseSoundRenderer>();
+
+            if (sndRenderer is null)
             {
-                graphicsRenderer = gfxRenderer;
-
-                return true;
+                return false;
             }
 
-            graphicsRenderer = graphicsRenderers.First();
+            soundRenderer = sndRenderer;
 
-            return true;
+            return soundRenderer.Init(Config);
         }
 
         public async Task<bool> InitializeAsync()
         {
             Config = await ConfigManager.LoadConfigAsync(BuildPath(EngineConstants.FILENAME_CONFIG));
 
-            var gfxInit = LoadGraphicsRenderer();
-
-            if (!gfxInit)
+            if (!InitGraphicsRenderer())
             {
+                // TODO: LOG
+
                 return false;
             }
 
-            graphicsRenderer.Init(Config);
+            if (!InitSoundRenderer())
+            {
+                // TODO: LOG
+
+                return false;
+            }
 
             return true;
         }

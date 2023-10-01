@@ -1,4 +1,4 @@
-﻿using RGE.Lib.Abstractions;
+﻿using RGE.Lib.Abstractions.Renderers;
 using RGE.Lib.Objects.Config;
 
 namespace RGE.Renderer.OpenGL
