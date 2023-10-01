@@ -1,4 +1,5 @@
-﻿using RGE.Lib.Abstractions.Base;
+﻿using NLog;
+using RGE.Lib.Abstractions.Base;
 using RGE.Lib.Abstractions.Renderers;
 using RGE.Lib.Abstractions.Renderers.Base;
 using RGE.Lib.Common;
@@ -22,10 +23,9 @@ namespace RGE.Lib.Abstractions
 
         protected BaseSoundRenderer soundRenderer;
 
-        private static string BuildPath(string fileName)
-        {
-            return Path.Combine(AppContext.BaseDirectory, fileName);
-        }
+        protected static NLog.Logger Logger => LogManager.GetCurrentClassLogger();
+
+        private static string BuildPath(string fileName) => Path.Combine(AppContext.BaseDirectory, fileName);
 
         private T? LoadRenderer<T>(string configOption) where T: BaseRenderer
         {
@@ -33,10 +33,12 @@ namespace RGE.Lib.Abstractions
 
             if (renderers.Count == 0)
             {
+                Logger.Error($"No {typeof(T).Name} found in {AppContext.BaseDirectory} - shutting down");
+
                 return null;
             }
 
-            var renderer = renderers.FirstOrDefault(a => a.Name == configOption);
+            var renderer = renderers.FirstOrDefault(a => string.Equals(a.Name, configOption, StringComparison.InvariantCultureIgnoreCase));
 
             return renderer ?? renderers.First();
         }
@@ -75,14 +77,14 @@ namespace RGE.Lib.Abstractions
 
             if (!InitGraphicsRenderer())
             {
-                // TODO: LOG
+                Logger.Error("Failed to initialize the Graphics Renderer - shutting down");
 
                 return false;
             }
 
             if (!InitSoundRenderer())
             {
-                // TODO: LOG
+                Logger.Error("Failed to initialize the Sound Renderer - shutting down");
 
                 return false;
             }
