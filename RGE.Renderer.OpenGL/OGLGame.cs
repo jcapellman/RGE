@@ -1,5 +1,6 @@
 ﻿using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
+using RGE.Lib.Objects.Config;
 
 namespace RGE.Renderer.OpenGL
 {
@@ -9,7 +10,13 @@ namespace RGE.Renderer.OpenGL
         {
         }
 
-        public OGLGame(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() { Size = (width, height), Title = title }) { }
+        public OGLGame(Configuration config) : base(GameWindowSettings.Default, new NativeWindowSettings()
+        {
+            Size = (config.vid_xres, config.vid_yres), WindowState = config.vid_fullscreen ? WindowState.Fullscreen : WindowState.Normal, Title = "RGE",
+        })
+        {
+
+        }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
         {

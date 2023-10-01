@@ -7,11 +7,13 @@ namespace RGE.Renderer.OpenGL
     {
         public override string Name => "OpenGL";
 
-        public override void Init(Configuration config)
+        public override bool Init(Configuration config)
         {
-            using var game = new OGLGame(config.vid_xres, config.vid_yres, "RGE");
+            using var game = new OGLGame(config);
 
             game.Run();
+
+            return true;
         }
     }
 }
