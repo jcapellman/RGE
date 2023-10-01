@@ -9,11 +9,11 @@ namespace RGE.Lib.Managers
 {
     public class ConfigManager : BaseManager
     {
-        private static Configuration CreateDefaultConfig(string configPath)
+        private static async Task<Configuration> CreateDefaultConfigAsync(string configPath)
         {
             var config = new Configuration();
 
-            SaveConfigAsync(configPath, config);
+            await SaveConfigAsync(configPath, config);
 
             return config;
         }
@@ -24,7 +24,7 @@ namespace RGE.Lib.Managers
             {
                 LogManager.GetCurrentClassLogger().Warn($"{configPath} does not exist, creating with defaults");
 
-                return CreateDefaultConfig(configPath);
+                return await CreateDefaultConfigAsync(configPath);
             }
 
             var configText = await File.ReadAllTextAsync(configPath);
@@ -33,19 +33,16 @@ namespace RGE.Lib.Managers
             {
                 var config = JsonSerializer.Deserialize<Configuration>(configText);
 
-                return config ?? CreateDefaultConfig(configPath);
+                return config ?? await CreateDefaultConfigAsync(configPath);
             }
             catch (JsonException jex)
             {
                 LogManager.GetCurrentClassLogger().Error($"{configPath} threw the following Json exception when attempting to load (using the default values instead): {jex}");
 
-                return CreateDefaultConfig(configPath);
+                return await CreateDefaultConfigAsync(configPath);
             }
         }
 
-        public static async void SaveConfigAsync(string configPath, Configuration config)
-        {
-            await File.WriteAllTextAsync(configPath, System.Text.Json.JsonSerializer.Serialize(config));
-        }
+        public static async Task SaveConfigAsync(string configPath, Configuration config) => await File.WriteAllTextAsync(configPath, System.Text.Json.JsonSerializer.Serialize(config));
     }
 }
