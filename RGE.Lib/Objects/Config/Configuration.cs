@@ -13,6 +13,11 @@ namespace RGE.Lib.Objects.Config
         [JsonIgnore]
         public override ObjectTypes ObjectType => ObjectTypes.JsonObject;
 
+        #region Sound Options
+        public string snd_ref { get; set; } = "Basic Sound";
+        #endregion
+
+        #region Graphics Options
         public string vid_ref { get; set; } = "OpenGL";
 
         public int vid_xres { get; set; } = 800;
@@ -20,5 +25,6 @@ namespace RGE.Lib.Objects.Config
         public int vid_yres { get; set; } = 600;
 
         public bool vid_fullscreen { get; set; } = false;
+        #endregion
     }
 }

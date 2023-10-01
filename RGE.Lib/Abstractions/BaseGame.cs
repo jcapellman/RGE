@@ -27,7 +27,7 @@ namespace RGE.Lib.Abstractions
             return Path.Combine(AppContext.BaseDirectory, fileName);
         }
 
-        private T? LoadRenderer<T>() where T: BaseRenderer
+        private T? LoadRenderer<T>(string configOption) where T: BaseRenderer
         {
             var renderers = RendererManager.LoadRenderers<T>(AppContext.BaseDirectory);
 
@@ -36,14 +36,14 @@ namespace RGE.Lib.Abstractions
                 return null;
             }
 
-            var renderer = renderers.FirstOrDefault(a => a.Name == Config.vid_ref);
+            var renderer = renderers.FirstOrDefault(a => a.Name == configOption);
 
             return renderer ?? renderers.First();
         }
 
         private bool InitGraphicsRenderer()
         {
-            var gfxRenderer = LoadRenderer<BaseGraphicsRenderer>();
+            var gfxRenderer = LoadRenderer<BaseGraphicsRenderer>(Config.vid_ref);
 
             if (gfxRenderer is null)
             {
@@ -57,7 +57,7 @@ namespace RGE.Lib.Abstractions
 
         private bool InitSoundRenderer()
         {
-            var sndRenderer = LoadRenderer<BaseSoundRenderer>();
+            var sndRenderer = LoadRenderer<BaseSoundRenderer>(Config.snd_ref);
 
             if (sndRenderer is null)
             {
