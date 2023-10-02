@@ -16,6 +16,7 @@
     <ProjectReference Include="..\RGE.Lib\RGE.Lib.csproj" />
     <ProjectReference Include="..\RGE.Renderer.BasicSnd\RGE.Renderer.BasicSnd.csproj" />
     <ProjectReference Include="..\RGE.Renderer.OpenGL\RGE.Renderer.OpenGL.csproj" />
+    <ProjectReference Include="..\RGE.Renderer.Xaudio\RGE.Renderer.Xaudio.csproj" />
   </ItemGroup>
 
   <ItemGroup>
