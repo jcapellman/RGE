@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JackSazerak.lib", "JackSaze
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGE.Renderer.OpenGL", "RGE.Renderer.OpenGL\RGE.Renderer.OpenGL.csproj", "{0DD96657-9B69-4E65-849D-21BBFFE92B10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RGE.Renderer.BasicSnd", "RGE.Renderer.BasicSnd\RGE.Renderer.BasicSnd.csproj", "{29329B8E-7CF8-49CF-9E40-0337A9A98745}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RGE.Renderer.BasicSnd", "RGE.Renderer.BasicSnd\RGE.Renderer.BasicSnd.csproj", "{29329B8E-7CF8-49CF-9E40-0337A9A98745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RGE.Renderer.Xaudio", "RGE.Renderer.Xaudio\RGE.Renderer.Xaudio.csproj", "{3E3A12C5-7A1D-4E81-AAA4-95A605A34CFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{29329B8E-7CF8-49CF-9E40-0337A9A98745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29329B8E-7CF8-49CF-9E40-0337A9A98745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29329B8E-7CF8-49CF-9E40-0337A9A98745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E3A12C5-7A1D-4E81-AAA4-95A605A34CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E3A12C5-7A1D-4E81-AAA4-95A605A34CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E3A12C5-7A1D-4E81-AAA4-95A605A34CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E3A12C5-7A1D-4E81-AAA4-95A605A34CFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
