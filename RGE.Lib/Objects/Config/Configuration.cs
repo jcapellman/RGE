@@ -15,6 +15,12 @@ namespace RGE.Lib.Objects.Config
 
         #region Sound Options
         public string snd_ref { get; set; } = "Basic Sound";
+
+        public int snd_khz { get; set; } = 44;
+
+        public int snd_bits { get; set; } = 16;
+
+        public int snd_channels { get; set; } = 2;
         #endregion
 
         #region Graphics Options

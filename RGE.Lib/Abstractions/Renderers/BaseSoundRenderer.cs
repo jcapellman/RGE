@@ -7,5 +7,7 @@ namespace RGE.Lib.Abstractions.Renderers
     public abstract class BaseSoundRenderer : BaseRenderer
     {
         public override ObjectTypes ObjectType => ObjectTypes.SoundRenderer;
+
+        public abstract void PlaySound(Stream audioStream, bool onLoop = false);
     }
 }

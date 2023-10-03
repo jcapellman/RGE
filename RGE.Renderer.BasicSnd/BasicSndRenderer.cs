@@ -11,5 +11,10 @@ namespace RGE.Renderer.BasicSnd
         {
             return true;
         }
+
+        public override void PlaySound(Stream audioStream, bool onLoop = false)
+        {
+            
+        }
     }
 }
