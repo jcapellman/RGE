@@ -26,6 +26,12 @@ namespace RGE.Renderer.Xaudio
             return true;
         }
 
+        public override void Shutdown()
+        {
+            _voice.Dispose();
+            _audio.Dispose();
+        }
+
         public override void PlaySound(Stream audioStream, bool onLoop = false)
         {
             SoundStream soundStream = new(audioStream);

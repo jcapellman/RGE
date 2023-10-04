@@ -12,6 +12,11 @@ namespace RGE.Renderer.BasicSnd
             return true;
         }
 
+        public override void Shutdown()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void PlaySound(Stream audioStream, bool onLoop = false)
         {
             

@@ -15,5 +15,10 @@ namespace RGE.Renderer.OpenGL
 
             return true;
         }
+
+        public override void Shutdown()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

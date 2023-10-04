@@ -6,5 +6,7 @@ namespace RGE.Lib.Abstractions.Renderers.Base
     public abstract class BaseRenderer : BaseRGEObject
     {
         public abstract bool Init(Configuration config);
+
+        public abstract void Shutdown();
     }
 }
