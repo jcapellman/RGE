@@ -27,6 +27,10 @@ namespace RGE.Lib.Abstractions
 
         private static string BuildPath(string fileName) => Path.Combine(AppContext.BaseDirectory, fileName);
 
+        public delegate void RGEEventHandler(object sender, string message);
+
+        public event RGEEventHandler EventFired;
+
         private T? LoadRenderer<T>(string configOption) where T: BaseRenderer
         {
             var renderers = RendererManager.LoadRenderers<T>(AppContext.BaseDirectory);
