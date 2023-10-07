@@ -32,14 +32,23 @@ namespace RGE.Renderer.Xaudio
             _audio.Dispose();
         }
 
-        public override void PlaySound(Stream audioStream, bool onLoop = false)
+        public override Guid PlaySound(Stream audioStream, bool onLoop = false)
         {
+            var guid = Guid.NewGuid();
+
             SoundStream soundStream = new(audioStream);
 
             using AudioBuffer effectBuffer = new(soundStream.ToDataStream());
 
             _voice.SubmitSourceBuffer(effectBuffer, null);
             _voice.Start(0);
+            
+            return guid;
+        }
+
+        public override void StopSound(Guid soundGuid)
+        {
+            _voice.Stop();
         }
     }
 }
