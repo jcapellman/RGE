@@ -11,24 +11,33 @@ namespace RGE.Renderer.Xaudio
         public override string Name => "XAudio";
 
         private IXAudio2 _audio;
-        private IXAudio2SourceVoice _voice;
+        private IXAudio2MasteringVoice _masteringVoice;
+
+        private WaveFormatExtensible _soundFormat;
+
+        private readonly Dictionary<Guid, IXAudio2SourceVoice> _voices = new();
 
         public override bool Init(Configuration config)
         {
             _audio = XAudio2.XAudio2Create(ProcessorSpecifier.DefaultProcessor);
 
-            using var masterVoice = _audio.CreateMasteringVoice();
+            _masteringVoice = _audio.CreateMasteringVoice();
 
-            WaveFormatExtensible format = new(config.snd_khz, config.snd_bits, config.snd_channels);
-
-            _voice = _audio.CreateSourceVoice(format, false);
+            _soundFormat = new WaveFormatExtensible(config.snd_khz, config.snd_bits, config.snd_channels);
 
             return true;
         }
 
         public override void Shutdown()
         {
-            _voice.Dispose();
+            foreach (var voice in _voices.Values)
+            {
+                voice.Stop();
+
+                voice.Dispose(); 
+            }
+
+            _masteringVoice.Dispose();
             _audio.Dispose();
         }
 
@@ -40,15 +49,24 @@ namespace RGE.Renderer.Xaudio
 
             using AudioBuffer effectBuffer = new(soundStream.ToDataStream());
 
-            _voice.SubmitSourceBuffer(effectBuffer, null);
-            _voice.Start(0);
+            var voice = _audio.CreateSourceVoice(_soundFormat, false);
+
+            voice.SubmitSourceBuffer(effectBuffer, null);
+            voice.Start(0);
             
+            _voices.Add(guid, voice);
+
             return guid;
         }
 
         public override void StopSound(Guid soundGuid)
         {
-            _voice.Stop();
+            if (!_voices.TryGetValue(soundGuid, out var value))
+            {
+                return;
+            }
+
+            value.Stop();
         }
     }
 }
