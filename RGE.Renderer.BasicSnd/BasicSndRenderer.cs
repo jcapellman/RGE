@@ -17,7 +17,7 @@ namespace RGE.Renderer.BasicSnd
             throw new NotImplementedException();
         }
 
-        public override Guid PlaySound(Stream audioStream, bool onLoop = false)
+        public override Guid PlaySound(Stream audioStream, bool onLoop = false, bool keepInMemory = false)
         {
             return Guid.Empty;
         }

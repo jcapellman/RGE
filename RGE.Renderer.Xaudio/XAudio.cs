@@ -8,6 +8,15 @@ namespace RGE.Renderer.Xaudio
 {
     public class XAudio : BaseSoundRenderer
     {
+        public struct AudioContainer
+        {
+            public IXAudio2SourceVoice Voice { get; set; }
+
+            public bool KeepInMemory { get; set; }
+
+            public bool OnLoop { get; set; }
+        }
+
         public override string Name => "XAudio";
 
         private IXAudio2 _audio;
@@ -15,7 +24,7 @@ namespace RGE.Renderer.Xaudio
 
         private WaveFormatExtensible _soundFormat;
 
-        private readonly Dictionary<Guid, IXAudio2SourceVoice> _voices = new();
+        private readonly Dictionary<Guid, AudioContainer> _voices = new();
 
         public override bool Init(Configuration config)
         {
@@ -32,16 +41,16 @@ namespace RGE.Renderer.Xaudio
         {
             foreach (var voice in _voices.Values)
             {
-                voice.Stop();
+                voice.Voice.Stop();
 
-                voice.Dispose(); 
+                voice.Voice.Dispose(); 
             }
 
             _masteringVoice.Dispose();
             _audio.Dispose();
         }
 
-        public override Guid PlaySound(Stream audioStream, bool onLoop = false)
+        public override Guid PlaySound(Stream audioStream, bool onLoop = false, bool keepInMemory = false)
         {
             var guid = Guid.NewGuid();
 
@@ -49,12 +58,12 @@ namespace RGE.Renderer.Xaudio
 
             using AudioBuffer effectBuffer = new(soundStream.ToDataStream());
 
-            var voice = _audio.CreateSourceVoice(_soundFormat, false);
+            var voice = _audio.CreateSourceVoice(_soundFormat, true);
 
             voice.SubmitSourceBuffer(effectBuffer, null);
             voice.Start(0);
             
-            _voices.Add(guid, voice);
+            _voices.Add(guid, new AudioContainer { KeepInMemory = keepInMemory, OnLoop = onLoop, Voice = voice});
 
             return guid;
         }
@@ -66,7 +75,7 @@ namespace RGE.Renderer.Xaudio
                 return;
             }
 
-            value.Stop();
+            value.Voice.Stop();
         }
     }
 }
