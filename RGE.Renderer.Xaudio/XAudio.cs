@@ -1,4 +1,5 @@
 ﻿using RGE.Lib.Abstractions.Renderers;
+using RGE.Lib.Enums;
 using RGE.Lib.Objects.Config;
 
 using Vortice.Multimedia;
@@ -12,9 +13,7 @@ namespace RGE.Renderer.Xaudio
         {
             public IXAudio2SourceVoice Voice { get; set; }
 
-            public bool KeepInMemory { get; set; }
-
-            public bool OnLoop { get; set; }
+            public SoundFlags Flags { get; set; }
         }
 
         public override string Name => "XAudio";
@@ -50,7 +49,7 @@ namespace RGE.Renderer.Xaudio
             _audio.Dispose();
         }
 
-        public override Guid PlaySound(Stream audioStream, bool onLoop = false, bool keepInMemory = false)
+        public override Guid PlaySound(Stream audioStream, SoundFlags flags = SoundFlags.None)
         {
             var guid = Guid.NewGuid();
 
@@ -63,7 +62,7 @@ namespace RGE.Renderer.Xaudio
             voice.SubmitSourceBuffer(effectBuffer, null);
             voice.Start(0);
             
-            _voices.Add(guid, new AudioContainer { KeepInMemory = keepInMemory, OnLoop = onLoop, Voice = voice});
+            _voices.Add(guid, new AudioContainer { Flags = flags, Voice = voice});
 
             return guid;
         }

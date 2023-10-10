@@ -1,4 +1,5 @@
 ﻿using RGE.Lib.Abstractions.Renderers;
+using RGE.Lib.Enums;
 using RGE.Lib.Objects.Config;
 
 namespace RGE.Renderer.BasicSnd
@@ -17,7 +18,7 @@ namespace RGE.Renderer.BasicSnd
             throw new NotImplementedException();
         }
 
-        public override Guid PlaySound(Stream audioStream, bool onLoop = false, bool keepInMemory = false)
+        public override Guid PlaySound(Stream audioStream, SoundFlags flags = SoundFlags.None)
         {
             return Guid.Empty;
         }
