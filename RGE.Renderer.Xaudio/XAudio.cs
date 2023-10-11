@@ -75,6 +75,13 @@ namespace RGE.Renderer.Xaudio
             }
 
             value.Voice.Stop();
+
+            if (value.Flags.HasFlag(SoundFlags.Reoccurring))
+            {
+                return;
+            }
+
+            _voices.Remove(soundGuid);
         }
     }
 }

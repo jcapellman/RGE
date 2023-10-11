@@ -14,7 +14,7 @@ namespace RGE.Lib.Objects.Config
         public override ObjectTypes ObjectType => ObjectTypes.JsonObject;
 
         #region Sound Options
-        public string snd_ref { get; set; } = "Basic Sound";
+        public string snd_ref { get; set; } = "XAudio";
 
         public int snd_khz { get; set; } = 44;
 
