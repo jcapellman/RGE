@@ -49,22 +49,14 @@ namespace RGE.Renderer.Xaudio
             _audio.Dispose();
         }
 
-        public override Guid PlaySound(Stream audioStream, SoundFlags flags = SoundFlags.None)
+        public override void PlaySound(Guid soundGuid)
         {
-            var guid = Guid.NewGuid();
+            if (!_voices.TryGetValue(soundGuid, out var value))
+            {
+                return;
+            }
 
-            SoundStream soundStream = new(audioStream);
-
-            using AudioBuffer effectBuffer = new(soundStream.ToDataStream());
-
-            var voice = _audio.CreateSourceVoice(_soundFormat, true);
-
-            voice.SubmitSourceBuffer(effectBuffer, null);
-            voice.Start(0);
-            
-            _voices.Add(guid, new AudioContainer { Flags = flags, Voice = voice});
-
-            return guid;
+            value.Voice.Start();
         }
 
         public override void StopSound(Guid soundGuid)
@@ -82,6 +74,24 @@ namespace RGE.Renderer.Xaudio
             }
 
             _voices.Remove(soundGuid);
+        }
+
+        public override Guid LoadSound(Stream audioStream, SoundFlags flags = SoundFlags.None)
+        {
+            var guid = Guid.NewGuid();
+
+            SoundStream soundStream = new(audioStream);
+
+            using AudioBuffer effectBuffer = new(soundStream.ToDataStream());
+
+            var voice = _audio.CreateSourceVoice(_soundFormat, true);
+
+            voice.SubmitSourceBuffer(effectBuffer, null);
+            voice.Start(0);
+
+            _voices.Add(guid, new AudioContainer { Flags = flags, Voice = voice });
+
+            return guid;
         }
     }
 }

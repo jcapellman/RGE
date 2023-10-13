@@ -7,8 +7,10 @@ namespace RGE.Lib.Abstractions.Renderers
     {
         public override ObjectTypes ObjectType => ObjectTypes.SoundRenderer;
 
-        public abstract Guid PlaySound(Stream audioStream,  SoundFlags flags = SoundFlags.None);
+        public abstract void PlaySound(Guid soundGuid);
 
         public abstract void StopSound(Guid soundGuid);
+
+        public abstract Guid LoadSound(Stream audioStream, SoundFlags flags = SoundFlags.None);
     }
 }
