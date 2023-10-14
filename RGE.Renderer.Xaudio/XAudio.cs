@@ -76,6 +76,11 @@ namespace RGE.Renderer.Xaudio
             _voices.Remove(soundGuid);
         }
 
+        public override void UnloadSound(Guid soundGuid)
+        {
+            _voices.Remove(soundGuid);
+        }
+
         public override Guid LoadSound(Stream audioStream, SoundFlags flags = SoundFlags.None)
         {
             var guid = Guid.NewGuid();

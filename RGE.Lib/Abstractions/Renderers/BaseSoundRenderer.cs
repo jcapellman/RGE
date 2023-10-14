@@ -11,6 +11,8 @@ namespace RGE.Lib.Abstractions.Renderers
 
         public abstract void StopSound(Guid soundGuid);
 
+        public abstract void UnloadSound(Guid soundGuid);
+
         public abstract Guid LoadSound(Stream audioStream, SoundFlags flags = SoundFlags.None);
     }
 }

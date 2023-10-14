@@ -27,6 +27,11 @@ namespace RGE.Renderer.BasicSnd
             throw new NotImplementedException();
         }
 
+        public override void UnloadSound(Guid soundGuid)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Guid LoadSound(Stream audioStream, SoundFlags flags = SoundFlags.None)
         {
             return Guid.Empty;
