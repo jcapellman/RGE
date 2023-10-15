@@ -21,7 +21,7 @@ namespace RGE.Lib.Abstractions
 
         protected BaseGraphicsRenderer graphicsRenderer;
 
-        protected BaseSoundRenderer soundRenderer;
+        protected SoundManager soundManager;
 
         protected static NLog.Logger Logger => LogManager.GetCurrentClassLogger();
 
@@ -70,9 +70,16 @@ namespace RGE.Lib.Abstractions
                 return false;
             }
 
-            soundRenderer = sndRenderer;
+            var init = sndRenderer.Init(Config);
 
-            return soundRenderer.Init(Config);
+            if (!init)
+            {
+                return false;
+            }
+            
+            soundManager = new SoundManager(sndRenderer);
+
+            return true;
         }
 
         public async Task<bool> InitializeAsync()
