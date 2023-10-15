@@ -1,6 +1,7 @@
 ﻿using RGE.Lib.Abstractions.Renderers;
 using RGE.Lib.Enums;
 using RGE.Lib.Managers.Base;
+using RGE.Lib.Objects.Assets;
 
 namespace RGE.Lib.Managers
 {
@@ -15,20 +16,28 @@ namespace RGE.Lib.Managers
             _soundRenderer = soundRenderer;
         }
 
-        public void LoadSound(string name, string filePath, SoundFlags flags = SoundFlags.None)
+        public void LoadSounds(IEnumerable<Sounds> sounds)
         {
-            if (!File.Exists(filePath))
+            foreach (var sound in sounds)
+            {
+                LoadSound(sound);
+            }
+        }
+
+        public void LoadSound(Sounds sound)
+        {
+            if (!File.Exists(sound.FileName))
             {
                 // Log Error
 
                 return;
             }
 
-            var stream = File.OpenRead(filePath);
+            var stream = File.OpenRead(sound.FileName);
 
-            var guid = _soundRenderer.LoadSound(stream, flags);
+            var guid = _soundRenderer.LoadSound(stream, sound.Flags);
 
-            _soundSources.Add(name, guid);
+            _soundSources.Add(sound.Name, guid);
         }
 
         public void PlaySound(string name)

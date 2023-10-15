@@ -5,6 +5,7 @@
         SoundRenderer,
         GraphicsRenderer,
         Game,
-        JsonObject
+        JsonObject,
+        Sound
     }
 }
